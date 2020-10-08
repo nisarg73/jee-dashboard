@@ -25,7 +25,7 @@ SECRET_KEY = 'k!ujc!)sk4hmf07zz4wa399+nbwii9s9vr7w4(4v&+0$9qe0x1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*]
 
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
@@ -90,8 +90,8 @@ DATABASES = {
         'NAME': 'jee',
         'USER': 'jee_user',
         'PASSWORD': 'jee_password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'HOST': 'postgres',
+        'PORT': 5432,
     }
 }
 

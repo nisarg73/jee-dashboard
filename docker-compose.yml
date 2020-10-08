@@ -1,0 +1,42 @@
+version: '3.6'
+
+services:
+  database:
+    container_name: jee_database
+    build: ./postgres
+    ports:
+      - '5432:5432'
+    user: postgres
+    env_file:
+      - postgres/database.env
+    volumes:
+      - type: volume
+        source: database
+        target: /var/lib/postgresql/data
+        read_only: false
+    networks:
+      - jee_network
+
+  backend:
+    container_name: jee_backend
+    build: ./backend
+    command: gunicorn dashboard.wsgi --bind 0.0.0.0:8000
+    ports:
+      - '8000:8000'
+    networks:
+      - jee_network
+
+  frontend:
+    container_name: jee_frontend
+    build: ./frontend
+    volumes:
+      - build_folder:/frontend/build
+    networks:
+      - jee_network
+
+volumes:
+  database:
+  build_folder:
+
+networks:
+  jee_network:
