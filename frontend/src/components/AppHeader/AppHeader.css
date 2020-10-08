@@ -1,0 +1,10 @@
+.app-header-segment {
+  padding: 0.75em 2em !important;
+}
+
+.app-header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

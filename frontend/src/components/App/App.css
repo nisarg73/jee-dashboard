@@ -1,0 +1,23 @@
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-container {
+  height: 100%;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+  margin: 1em 2em 2em 2em;
+}
+
+.App-footer {
+  position: fixed;
+  height: 3em;
+  bottom: 0em;
+  left: 0em;
+  right: 0em;
+}
