@@ -5,8 +5,6 @@ services:
     restart: always
     container_name: jee_database
     build: ./postgres
-    ports:
-      - '5432:5432'
     env_file:
       - postgres/database.env
     volumes:

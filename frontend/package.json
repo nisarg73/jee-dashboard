@@ -2,7 +2,7 @@
   "name": "jee-adv-oc-ranks",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jeecutoff.channeli.in/",
+  "homepage": "https://cutoffs.iitr.ac.in/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",

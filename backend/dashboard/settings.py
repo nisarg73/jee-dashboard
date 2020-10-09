@@ -11,21 +11,27 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import yaml
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+base_config_file = open(os.path.join(
+    BASE_DIR,
+    'configuration/base.yml'
+))
+base_configuration = yaml.load(base_config_file, Loader=yaml.FullLoader)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'k!ujc!)sk4hmf07zz4wa399+nbwii9s9vr7w4(4v&+0$9qe0x1'
+SECRET_KEY = base_configuration["secrets"]["secretKey"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['cutoffs.iitr.ac.in', 'cutoffs.iitr.ac.in']
 
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
@@ -87,11 +93,11 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'jee',
-        'USER': 'jee_user',
-        'PASSWORD': 'jee_password',
-        'HOST': 'db',
-        'PORT': 5432,
+        'NAME': base_configuration['services']['database']['name'],
+        'USER': base_configuration['services']['database']['user'],
+        'PASSWORD': base_configuration['services']['database']['password'],
+        'HOST': base_configuration['services']['database']['host'],
+        'PORT': base_configuration['services']['database']['port'],
     }
 }
 
@@ -118,9 +124,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = base_configuration['i18n']['languageCode']
 
-TIME_ZONE = 'Asia/Kolkata'
+TIME_ZONE = base_configuration['i18n']['timezone']
 
 USE_I18N = True
 
