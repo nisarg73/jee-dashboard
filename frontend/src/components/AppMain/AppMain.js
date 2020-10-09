@@ -55,7 +55,7 @@ class AppMain extends Component {
 
   componentDidMount () {
     axios
-      .get('//jee-ranks.azurewebsites.net/items', {
+      .get('/items/', {
         params: {
           year: this.state.year
         }
@@ -93,7 +93,7 @@ class AppMain extends Component {
     }
     this.setState({ [name]: value }, () => {
       axios
-        .get('//jee-ranks.azurewebsites.net/items', {
+        .get('/items/', {
           params: {
             year: this.state.year,
             search: this.state.search,
@@ -152,7 +152,7 @@ class AppMain extends Component {
         compare = ''
       }
       axios
-        .get('//jee-ranks.azurewebsites.net/items', {
+        .get('/items//', {
           params: {
             year: this.state.year,
             page: this.state.currPage,
@@ -187,7 +187,7 @@ class AppMain extends Component {
         },
         () => {
           axios
-            .get('//jee-ranks.azurewebsites.net/items', {
+            .get('/items/', {
               params: {
                 year: this.state.year,
                 page: this.state.currPage,
@@ -225,7 +225,7 @@ class AppMain extends Component {
           ? (compare = currColumn)
           : (compare = '-' + currColumn)
         axios
-          .get('//jee-ranks.azurewebsites.net/items', {
+          .get('/items/', {
             params: {
               year: this.state.year,
               page: this.state.currPage,
@@ -271,7 +271,7 @@ class AppMain extends Component {
       { [e.target.name]: e.target.valueAsNumber || e.target.value },
       () => {
         axios
-          .get('//jee-ranks.azurewebsites.net/items', {
+          .get('/items/', {
             params: {
               year: this.state.year,
               search: this.state.search,
@@ -300,7 +300,7 @@ class AppMain extends Component {
   handleResetFilters = () => {
     this.setState(initialState, () => {
       axios
-        .get('//jee-ranks.azurewebsites.net/items/', {
+        .get('/items/', {
           params: {
             year: this.state.year
           }
