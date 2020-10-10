@@ -351,6 +351,10 @@ class AppMain extends Component {
               <SemanticToastContainer />
             </div>
           </div>
+          <div className='year-note'>
+            *Opening Closing ranks of this year, 2020, will be updated here
+            after each round, once they are released by JoSSA :)
+          </div>
         </Segment>
         <Accordion fluid styled>
           <Accordion.Title

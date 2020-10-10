@@ -11,6 +11,11 @@
   margin: 0em 1em;
 }
 
+.year-note {
+  margin: 1em 1em 0em 1em;
+  color: gray;
+}
+
 .dropdown-filters {
   min-height: 'auto !important';
   height: 1em;
