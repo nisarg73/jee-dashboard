@@ -6,7 +6,6 @@ export const degrees = [
   'Int MSc.',
   'B.Arch',
   'Int M.Tech',
-  'OBC-NCL-PWD',
   'B.Pharm',
   'B.Pharm + M.Pharm'
 ]
