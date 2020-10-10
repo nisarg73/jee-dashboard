@@ -97,6 +97,7 @@ class AppMain extends Component {
           params: {
             year: this.state.year,
             search: this.state.search,
+            ordering: this.state.ordering,
             institute_short: this.state.institute_short,
             program_name: this.state.program,
             program_duration: this.state.duration,
@@ -143,20 +144,12 @@ class AppMain extends Component {
 
   handlePageChange = (event, data) => {
     this.setState({ currPage: data['activePage'] }, () => {
-      var compare
-      if (this.state.direction != null) {
-        this.state.direction === 'ascending'
-          ? (compare = this.state.clickedColumn)
-          : (compare = '-' + this.state.clickedColumn)
-      } else {
-        compare = ''
-      }
       axios
-        .get('/items//', {
+        .get('/items/', {
           params: {
             year: this.state.year,
             page: this.state.currPage,
-            ordering: compare,
+            ordering: this.state.ordering,
             search: this.state.search,
             institute_short: this.state.institute_short,
             program_name: this.state.program,
@@ -183,6 +176,7 @@ class AppMain extends Component {
         {
           clickedColumn: currColumn,
           direction: 'ascending',
+          ordering: currColumn,
           currPage: 1
         },
         () => {
@@ -191,7 +185,7 @@ class AppMain extends Component {
               params: {
                 year: this.state.year,
                 page: this.state.currPage,
-                ordering: currColumn,
+                ordering: this.state.clickedColumn,
                 search: this.state.search,
                 institute_short: this.state.institute_short,
                 program_name: this.state.program,
@@ -217,19 +211,17 @@ class AppMain extends Component {
     this.setState(
       {
         direction:
-          this.state.direction === 'ascending' ? 'descending' : 'ascending'
+          this.state.direction === 'ascending' ? 'descending' : 'ascending',
+        ordering:
+          this.state.direction === 'ascending' ? '-' + currColumn : currColumn
       },
       () => {
-        var compare
-        this.state.direction === 'ascending'
-          ? (compare = currColumn)
-          : (compare = '-' + currColumn)
         axios
           .get('/items/', {
             params: {
               year: this.state.year,
               page: this.state.currPage,
-              ordering: compare,
+              ordering: this.state.ordering,
               search: this.state.search,
               institute_short: this.state.institute_short,
               program_name: this.state.program,
