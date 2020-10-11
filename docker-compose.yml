@@ -20,8 +20,6 @@ services:
     container_name: jee_backend
     build: ./backend
     command: gunicorn dashboard.wsgi --bind 0.0.0.0:8000
-    ports:
-      - '8000:8000'
     networks:
       - jee_network
 
@@ -37,7 +35,7 @@ services:
     container_name: jee_webserver
     build: ./webserver
     ports:
-      - '3000:3000'
+      - '8081:3000'
     volumes:
       - build_folder:/var/www/frontend
     depends_on:

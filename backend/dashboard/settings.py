@@ -31,7 +31,7 @@ SECRET_KEY = base_configuration["secrets"]["secretKey"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['cutoffs.iitr.ac.in', 'cutoffs.iitr.ac.in']
+ALLOWED_HOSTS = ['cutoffs.iitr.ac.in']
 
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
@@ -143,9 +143,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    ),
+        'DEFAULT_RENDERER_CLASSES': [
+                'rest_framework.renderers.JSONRenderer',
+                 ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 50
 }
