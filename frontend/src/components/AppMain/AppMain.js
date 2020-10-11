@@ -666,6 +666,17 @@ class AppMain extends Component {
             }}
           />
         </div>
+        <div className='github-repo'>
+          *This is an open source project, if found helpful, do star{' '}
+          <a
+            href='https://github.com/nisarg73/jee-dashboard'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            its github repo
+          </a>{' '}
+          :D
+        </div>
       </div>
     )
   }

@@ -50,7 +50,11 @@
 }
 
 .table-margin {
-  margin: 0.5em 0em 6em 0em;
+  margin-top: 0.5em;
+}
+
+.github-repo {
+  margin: 2em 0em 6em 0em;
 }
 
 .ui.search > .ui.input.icon {
