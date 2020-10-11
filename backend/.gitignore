@@ -1,2 +1,5 @@
 # Compiled .pyc files
 __pycache__/
+
+# config variables
+configuration/base.yml

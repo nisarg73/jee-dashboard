@@ -1,0 +1,13 @@
+i18n:
+  languageCode: '' # The language code of the portal, like en-gb
+  timezone: '' # The time zone of the portal, like Asia/Kolkata
+secrets:
+  secretKey: '' # 'fifty random characters'
+services:
+  database:
+    # Ideally copy the settings over from postgres/database.env
+    host: '' # database, or your own server configuration
+    name: '' # Same as database.env, or your own server configuration
+    user: '' # Same as database.env, or your own server configuration
+    password: '' # Same as database.env, or your own server configuration
+    port: '' # 5432, or your own server configuration
