@@ -7,6 +7,7 @@ class Item(models.Model):
     """
 
     year = models.IntegerField()
+    institute_type = models.CharField(max_length=3, default="IIT")
     round_no = models.IntegerField()
     quota = models.CharField(max_length=7)
     pool = models.CharField(max_length=31)

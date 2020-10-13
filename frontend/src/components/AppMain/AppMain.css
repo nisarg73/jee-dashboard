@@ -2,13 +2,32 @@
   width: 100%;
 }
 
-.primary-filters {
+.year-type-mobile {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.year-type-browser {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .primary-filters-margin {
   margin: 0em 1em;
+}
+
+.year-type-margin {
+  margin: 0.5em 0em;
+}
+
+.year-button {
+  margin-right: 1em !important;
+  padding: 0.75em 2.2em !important;
+}
+
+.college-margin {
+  margin-top: 0.75em;
 }
 
 .year-note {
