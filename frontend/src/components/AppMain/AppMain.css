@@ -54,6 +54,12 @@
   margin: 0.5em 1em;
 }
 
+.personlized-filter-align {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0.5em 1em;
+}
+
 .personalized-filter {
   display: flex;
   flex-direction: column;
