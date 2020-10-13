@@ -20,6 +20,7 @@ class ItemViewSet(viewsets.ModelViewSet):
 	filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
 	filterset_fields = {
 		'year': ['exact'],
+		'institute_type': ['exact'],
 		'pool': ['exact'],
 		'institute_short': ['exact'],
 		'program_name': ['exact'],

@@ -1,4 +1,4 @@
-export const programs = [
+export const iitPrograms = [
   'All',
   'Aerospace Engineering',
   'Agricultural and Food Engineering',
@@ -102,9 +102,70 @@ export const programs = [
   'Textile Technology'
 ]
 
-export const programDropDownOptions = programs.map(function (element) {
+export const nitPrograms = [
+  'All',
+  'Bio Technology',
+  'Chemical Engineering',
+  'Civil Engineering',
+  'Computer Science and Engineering',
+  'Electrical Engineering',
+  'Electronics and Communication Engineering',
+  'Industrial and Production Engineering',
+  'Information Technology',
+  'Instrumentation and Control Engineering',
+  'Mechanical Engineering',
+  'Textile Technology',
+  'Architecture',
+  'Metallurgical and Materials Engineering',
+  'Materials Science and Metallurgical Engineering',
+  'Planning',
+  'Production and Industrial Engineering',
+  'Bio Engineering',
+  'Chemistry',
+  'Electronics and Instrumentation Engineering',
+  'Engineering Physics',
+  'Mathematics',
+  'Physics',
+  'Production Engineering',
+  'Electrical and Electronics Engineering',
+  'Biotechnology',
+  'Materials Science and Engineering',
+  'Mining Engineering',
+  'Bio Medical Engineering',
+  'Electronics and Telecommunication Engineering',
+  'Metallurgical Engineering',
+  'Computer Engineering',
+  'Ceramic Engineering',
+  'Ceramic Engineering and M.Tech Industrial Ceramic',
+  'Food Process Engineering',
+  'Industrial Design',
+  'Life Science',
+  'Material Science',
+  'Civil Engineering and M.Tech in Transportation Engineering',
+  'Civil Engineering and M.Tech in Water Resources',
+  'Computer Science and Engineering and M.Tech Computer Science',
+  'Computer Science and Engineering and M.Tech in Information Security',
+  'Electrical Engineering and M.Tech Control and Automation',
+  'Electrical Engineering and M.Tech Electronic Systems and Communications',
+  'Electrical Engineering and M.Tech Power Electronics and Drives',
+  'Electronics and Communication Engineering and M.Tech Communication and Network',
+  'Electronics and Instrumentation Engineering and M.Tech VLSI Design and Embedded',
+  'Mechanical Engineering and M.Tech Mechatronics and Automation',
+  'Biotechnology and Biochemical Engineering',
+  'Mathematics and Computing'
+]
+
+export const iitProgramDropDownOptions = iitPrograms.map(function (element) {
   return {
-    key: programs.indexOf(element),
+    key: iitPrograms.indexOf(element),
+    text: element,
+    value: element
+  }
+})
+
+export const nitProgramDropDownOptions = nitPrograms.map(function (element) {
+  return {
+    key: nitPrograms.indexOf(element),
     text: element,
     value: element
   }

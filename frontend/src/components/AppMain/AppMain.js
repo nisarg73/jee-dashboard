@@ -13,16 +13,27 @@ import {
   Icon,
   Accordion,
   Input,
-  Message
+  Message,
+  Form,
+  Radio
 } from 'semantic-ui-react'
 
 import './AppMain.css'
 
 import { yearDropDownOptions } from '../../constants/years'
-import { instituteDropDownOptions } from '../../constants/institutes'
-import { programDropDownOptions } from '../../constants/programs'
+import {
+  iitDropDownOptions,
+  nitDropDownOptions
+} from '../../constants/institutes'
+import {
+  iitProgramDropDownOptions,
+  nitProgramDropDownOptions
+} from '../../constants/programs'
 import { durationDropDownOptions } from '../../constants/durations'
-import { degreeDropDownOptions } from '../../constants/degrees'
+import {
+  iitDegreeDropDownOptions,
+  nitDegreeDropDownOptions
+} from '../../constants/degrees'
 import { categoryDropDownOptions } from '../../constants/categories'
 import { poolDropDownOptions } from '../../constants/pools'
 import instructions from '../../constants/instructions'
@@ -30,6 +41,7 @@ import instructions from '../../constants/instructions'
 const initialState = {
   data: [],
   year: '2019',
+  institute_type: 'IIT',
   count: 0,
   search: '',
   currPage: 1,
@@ -57,7 +69,8 @@ class AppMain extends Component {
     axios
       .get('/items/', {
         params: {
-          year: this.state.year
+          year: this.state.year,
+          institute_type: this.state.institute_type
         }
       })
       .then(response =>
@@ -88,7 +101,7 @@ class AppMain extends Component {
       value = ''
     }
     var showToast = false
-    if (name === 'year') {
+    if (name === 'year' || name === 'institute_type') {
       showToast = true
     }
     this.setState({ [name]: value }, () => {
@@ -96,6 +109,7 @@ class AppMain extends Component {
         .get('/items/', {
           params: {
             year: this.state.year,
+            institute_type: this.state.institute_type,
             search: this.state.search,
             ordering: this.state.ordering,
             institute_short: this.state.institute_short,
@@ -119,7 +133,7 @@ class AppMain extends Component {
               if (showToast) {
                 toast({
                   type: 'success',
-                  title: 'Year changed',
+                  title: `Changed to ${value}`,
                   description: 'Please scroll down to see the table.',
                   animation: 'fade up',
                   icon: 'check circle',
@@ -148,6 +162,7 @@ class AppMain extends Component {
         .get('/items/', {
           params: {
             year: this.state.year,
+            institute_type: this.state.institute_type,
             page: this.state.currPage,
             ordering: this.state.ordering,
             search: this.state.search,
@@ -184,6 +199,7 @@ class AppMain extends Component {
             .get('/items/', {
               params: {
                 year: this.state.year,
+                institute_type: this.state.institute_type,
                 page: this.state.currPage,
                 ordering: this.state.clickedColumn,
                 search: this.state.search,
@@ -220,6 +236,7 @@ class AppMain extends Component {
           .get('/items/', {
             params: {
               year: this.state.year,
+              institute_type: this.state.institute_type,
               page: this.state.currPage,
               ordering: this.state.ordering,
               search: this.state.search,
@@ -266,6 +283,7 @@ class AppMain extends Component {
           .get('/items/', {
             params: {
               year: this.state.year,
+              institute_type: this.state.institute_type,
               search: this.state.search,
               institute_short: this.state.institute_short,
               program_name: this.state.program,
@@ -294,7 +312,8 @@ class AppMain extends Component {
       axios
         .get('/items/', {
           params: {
-            year: this.state.year
+            year: this.state.year,
+            institute_type: this.state.institute_type
           }
         })
         .then(response =>
@@ -310,6 +329,7 @@ class AppMain extends Component {
     const {
       data,
       year,
+      institute_type,
       currPage,
       count,
       search,
@@ -328,21 +348,60 @@ class AppMain extends Component {
     return (
       <div className='app-main' id='scroll-to-filter'>
         <Segment>
-          <div className={isBrowser ? 'primary-filters' : null}>
-            <div className='primary-filters-margin'>
-              <Button content='Year' color='facebook' />
-              <Dropdown
-                name='year'
-                value={year}
-                placeholder='All'
-                selection
-                compact
-                options={yearDropDownOptions}
-                onChange={this.handleChange}
-              />
-              <SemanticToastContainer />
+          <div className='primary-filters-margin'>
+            <div
+              className={isBrowser ? 'year-type-mobile' : 'year-type-mobile'}
+            >
+              <div className='year-type-margin'>
+                <Button
+                  content='Year'
+                  color='facebook'
+                  className='year-button'
+                />
+                <Dropdown
+                  name='year'
+                  value={year}
+                  placeholder='All'
+                  selection
+                  compact
+                  options={yearDropDownOptions}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div>
+                <Form>
+                  <Form.Group>
+                    <Form.Field>
+                      <Button content='College' color='facebook' />
+                    </Form.Field>
+                    <Form.Field>
+                      <Radio
+                        className='college-margin'
+                        label='IIT'
+                        name='institute_type'
+                        value='IIT'
+                        checked={institute_type === 'IIT'}
+                        onChange={this.handleChange}
+                      />
+                    </Form.Field>
+                    <Form.Field>
+                      <Radio
+                        className='college-margin'
+                        label='NIT'
+                        name='institute_type'
+                        value='NIT'
+                        checked={institute_type === 'NIT'}
+                        onChange={this.handleChange}
+                      />
+                    </Form.Field>
+                  </Form.Group>
+                </Form>
+              </div>
             </div>
+
+            <SemanticToastContainer />
           </div>
+
           <div className='year-note'>
             *Opening Closing ranks of this year, 2020, will be updated here
             after each round, once they are released by JoSSA :)
@@ -382,7 +441,11 @@ class AppMain extends Component {
                     selection
                     search
                     clearable
-                    options={instituteDropDownOptions}
+                    options={
+                      this.state.institute_type === 'IIT'
+                        ? iitDropDownOptions
+                        : nitDropDownOptions
+                    }
                     onChange={this.handleChange}
                   />
                 </div>
@@ -396,7 +459,11 @@ class AppMain extends Component {
                     selection
                     search
                     clearable
-                    options={programDropDownOptions}
+                    options={
+                      this.state.institute_type === 'IIT'
+                        ? iitProgramDropDownOptions
+                        : nitProgramDropDownOptions
+                    }
                     onChange={this.handleChange}
                   />
                 </div>
@@ -412,7 +479,11 @@ class AppMain extends Component {
                     selection
                     search
                     clearable
-                    options={degreeDropDownOptions}
+                    options={
+                      this.state.institute_type === 'IIT'
+                        ? iitDegreeDropDownOptions
+                        : nitDegreeDropDownOptions
+                    }
                     onChange={this.handleChange}
                   />
                 </div>
@@ -481,7 +552,7 @@ class AppMain extends Component {
                   value={userrank}
                   onChange={this.handlePersonalFilter}
                   label={{ content: 'Your Rank', color: 'blue' }}
-                  placeholder='Enter your JEE Adv. Rank'
+                  placeholder='Enter your JEE Rank'
                 />
               </div>
               <div className='secondary-filters-margin'>
@@ -500,7 +571,7 @@ class AppMain extends Component {
 
         <div className='reset-margin'>
           <Button color='google plus' onClick={this.handleResetFilters}>
-            Clear Filters
+            Reset Filters
           </Button>
         </div>
 
