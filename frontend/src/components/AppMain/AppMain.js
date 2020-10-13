@@ -545,7 +545,7 @@ class AppMain extends Component {
           </Accordion.Title>
           <Accordion.Content active={activeIndexs.includes(1)}>
             <div className='personalized-filter'>
-              <div className='secondary-filters-margin'>
+              <div className='personlized-filter-align'>
                 <Button
                   content={
                     institute_type === 'IIT' ? 'Adv. Rank' : 'Mains Rank'
@@ -561,7 +561,7 @@ class AppMain extends Component {
                   placeholder='Enter your JEE Rank'
                 />
               </div>
-              <div className='secondary-filters-margin'>
+              <div className='personlized-filter-align'>
                 <Button content='Delta' color='blue' />
                 <Input
                   style={{ width: 130, height: 37 }}
