@@ -546,22 +546,29 @@ class AppMain extends Component {
           <Accordion.Content active={activeIndexs.includes(1)}>
             <div className='personalized-filter'>
               <div className='secondary-filters-margin'>
+                <Button
+                  content={
+                    institute_type === 'IIT' ? 'Adv. Rank' : 'Mains Rank'
+                  }
+                  color='blue'
+                />
                 <Input
+                  style={{ width: 130, height: 37 }}
                   type='number'
                   name='userrank'
                   value={userrank}
                   onChange={this.handlePersonalFilter}
-                  label={{ content: 'Your Rank', color: 'blue' }}
                   placeholder='Enter your JEE Rank'
                 />
               </div>
               <div className='secondary-filters-margin'>
+                <Button content='Delta' color='blue' />
                 <Input
+                  style={{ width: 130, height: 37 }}
                   type='number'
                   name='userdelta'
                   value={userdelta}
                   onChange={this.handlePersonalFilter}
-                  label={{ content: 'Delta', color: 'blue' }}
                   placeholder='Enter prefered Delta'
                 />
               </div>
