@@ -21,6 +21,7 @@ class ItemViewSet(viewsets.ModelViewSet):
 	filterset_fields = {
 		'year': ['exact'],
 		'institute_type': ['exact'],
+		'quota': ['exact'],
 		'pool': ['exact'],
 		'institute_short': ['exact'],
 		'program_name': ['exact'],
@@ -31,5 +32,5 @@ class ItemViewSet(viewsets.ModelViewSet):
 		'closing_rank': ['lte', 'gte'],
 		'is_preparatory': ['exact']
 	}
-	search_fields = ['pool', 'institute_short', 'program_name', 'program_duration', 'degree_short', 'category', 'opening_rank', 'closing_rank', 'is_preparatory']
-	ordering_fields = ['pool', 'institute_short', 'program_name', 'program_duration', 'degree_short', 'category', 'opening_rank', 'closing_rank', 'is_preparatory']
+	search_fields = ['pool', 'institute_short', 'program_name', 'program_duration', 'degree_short', 'category', 'opening_rank', 'closing_rank']
+	ordering_fields = ['pool', 'institute_short', 'program_name', 'program_duration', 'degree_short', 'category', 'opening_rank', 'closing_rank']
