@@ -12,4 +12,4 @@ class ItemSerializer(serializers.ModelSerializer):
 		"""
 
 		model = Item
-		exclude = ['round_no', 'quota', 'institute_full', 'institute_location', 'degree_full']
+		exclude = ['round_no', 'institute_full', 'institute_location', 'degree_full']

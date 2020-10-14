@@ -2,14 +2,9 @@
   width: 100%;
 }
 
-.year-type-mobile {
+.year-type {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-}
-
-.year-type-browser {
-  display: flex;
   justify-content: flex-start;
 }
 
@@ -28,6 +23,14 @@
 
 .college-margin {
   margin-top: 0.75em;
+}
+
+.state-button {
+  padding: 0.7em 2em !important;
+}
+
+.form-group-margin-bottom {
+  margin-bottom: 0em !important;
 }
 
 .year-note {

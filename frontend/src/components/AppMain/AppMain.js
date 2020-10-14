@@ -42,6 +42,7 @@ const initialState = {
   data: [],
   year: '2019',
   institute_type: 'IIT',
+  quota: '',
   count: 0,
   search: '',
   currPage: 1,
@@ -101,7 +102,7 @@ class AppMain extends Component {
       value = ''
     }
     var showToast = false
-    if (name === 'year' || name === 'institute_type') {
+    if (name === 'year' || name === 'institute_type' || name === 'quota') {
       showToast = true
     }
     this.setState({ [name]: value }, () => {
@@ -110,6 +111,7 @@ class AppMain extends Component {
           params: {
             year: this.state.year,
             institute_type: this.state.institute_type,
+            quota: this.state.quota,
             search: this.state.search,
             ordering: this.state.ordering,
             institute_short: this.state.institute_short,
@@ -131,9 +133,19 @@ class AppMain extends Component {
             },
             () => {
               if (showToast) {
+                var msg
+                if (value === 'OS') {
+                  msg = 'OS Quota'
+                } else if (value === 'HS') {
+                  msg = 'HS Quota'
+                } else if (value === '') {
+                  msg = 'HS & OS Quota'
+                } else {
+                  msg = value
+                }
                 toast({
                   type: 'success',
-                  title: `Changed to ${value}`,
+                  title: `Changed to ${msg}`,
                   description: 'Please scroll down to see the table.',
                   animation: 'fade up',
                   icon: 'check circle',
@@ -163,6 +175,7 @@ class AppMain extends Component {
           params: {
             year: this.state.year,
             institute_type: this.state.institute_type,
+            quota: this.state.quota,
             page: this.state.currPage,
             ordering: this.state.ordering,
             search: this.state.search,
@@ -200,6 +213,7 @@ class AppMain extends Component {
               params: {
                 year: this.state.year,
                 institute_type: this.state.institute_type,
+                quota: this.state.quota,
                 page: this.state.currPage,
                 ordering: this.state.clickedColumn,
                 search: this.state.search,
@@ -237,6 +251,7 @@ class AppMain extends Component {
             params: {
               year: this.state.year,
               institute_type: this.state.institute_type,
+              quota: this.state.quota,
               page: this.state.currPage,
               ordering: this.state.ordering,
               search: this.state.search,
@@ -284,6 +299,7 @@ class AppMain extends Component {
             params: {
               year: this.state.year,
               institute_type: this.state.institute_type,
+              quota: this.state.quota,
               search: this.state.search,
               institute_short: this.state.institute_short,
               program_name: this.state.program,
@@ -330,6 +346,7 @@ class AppMain extends Component {
       data,
       year,
       institute_type,
+      quota,
       currPage,
       count,
       search,
@@ -349,9 +366,7 @@ class AppMain extends Component {
       <div className='app-main' id='scroll-to-filter'>
         <Segment>
           <div className='primary-filters-margin'>
-            <div
-              className={isBrowser ? 'year-type-mobile' : 'year-type-mobile'}
-            >
+            <div className='year-type'>
               <div className='year-type-margin'>
                 <Button
                   content='Year'
@@ -368,9 +383,9 @@ class AppMain extends Component {
                   onChange={this.handleChange}
                 />
               </div>
-              <div>
+              <div className='year-type-margin'>
                 <Form>
-                  <Form.Group>
+                  <Form.Group className='form-group-margin-bottom'>
                     <Form.Field>
                       <Button content='College' color='facebook' />
                     </Form.Field>
@@ -397,8 +412,52 @@ class AppMain extends Component {
                   </Form.Group>
                 </Form>
               </div>
+              {institute_type === 'NIT' && (
+                <div className='year-type-margin'>
+                  <Form>
+                    <Form.Group className='form-group-margin-bottom'>
+                      <Form.Field>
+                        <Button
+                          content='State'
+                          color='facebook'
+                          className='state-button'
+                        />
+                      </Form.Field>
+                      <Form.Field>
+                        <Radio
+                          className='college-margin'
+                          label='HS'
+                          name='quota'
+                          value='HS'
+                          checked={quota === 'HS'}
+                          onChange={this.handleChange}
+                        />
+                      </Form.Field>
+                      <Form.Field>
+                        <Radio
+                          className='college-margin'
+                          label='OS'
+                          name='quota'
+                          value='OS'
+                          checked={quota === 'OS'}
+                          onChange={this.handleChange}
+                        />
+                      </Form.Field>
+                      <Form.Field>
+                        <Radio
+                          className='college-margin'
+                          label='Both'
+                          name='quota'
+                          value='All'
+                          checked={quota === ''}
+                          onChange={this.handleChange}
+                        />
+                      </Form.Field>
+                    </Form.Group>
+                  </Form>
+                </div>
+              )}
             </div>
-
             <SemanticToastContainer />
           </div>
 
@@ -617,6 +676,9 @@ class AppMain extends Component {
                 >
                   Program
                 </Table.HeaderCell>
+                {institute_type === 'NIT' && (
+                  <Table.HeaderCell textAlign='center'>Quota</Table.HeaderCell>
+                )}
                 <Table.HeaderCell
                   sorted={
                     clickedColumn === 'program_duration' ? direction : null
@@ -678,6 +740,9 @@ class AppMain extends Component {
                   <Table.Cell textAlign='center'>
                     {element.program_name}
                   </Table.Cell>
+                  {institute_type === 'NIT' && (
+                    <Table.Cell textAlign='center'>{element.quota}</Table.Cell>
+                  )}
                   <Table.Cell textAlign='center'>
                     {element.program_duration}
                   </Table.Cell>
