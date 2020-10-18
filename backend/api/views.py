@@ -20,6 +20,7 @@ class ItemViewSet(viewsets.ModelViewSet):
 	filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
 	filterset_fields = {
 		'year': ['exact'],
+		'round_no': ['exact'],
 		'institute_type': ['exact'],
 		'quota': ['exact'],
 		'pool': ['exact'],
