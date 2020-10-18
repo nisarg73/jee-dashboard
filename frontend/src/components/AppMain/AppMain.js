@@ -21,6 +21,7 @@ import {
 import './AppMain.css'
 
 import { yearDropDownOptions } from '../../constants/years'
+import { roundDropDownOptions } from '../../constants/rounds'
 import {
   iitDropDownOptions,
   nitDropDownOptions
@@ -40,7 +41,8 @@ import instructions from '../../constants/instructions'
 
 const initialState = {
   data: [],
-  year: '2019',
+  year: '2020',
+  round_no: '1',
   institute_type: 'IIT',
   quota: '',
   count: 0,
@@ -71,6 +73,7 @@ class AppMain extends Component {
       .get('/items/', {
         params: {
           year: this.state.year,
+          round_no: this.state.round_no,
           institute_type: this.state.institute_type
         }
       })
@@ -101,8 +104,22 @@ class AppMain extends Component {
     if (value === 'All') {
       value = ''
     }
+    // Temporary hack.
+    // Create a generic handle change to avoid code repetition in future
+    if (name === 'year') {
+      if (value === '2020') {
+        this.setState({ round_no: '1' })
+      } else {
+        this.setState({ round_no: '' })
+      }
+    }
     var showToast = false
-    if (name === 'year' || name === 'institute_type' || name === 'quota') {
+    if (
+      name === 'year' ||
+      name === 'institute_type' ||
+      name === 'quota' ||
+      name === 'round_no'
+    ) {
       showToast = true
     }
     this.setState({ [name]: value }, () => {
@@ -110,6 +127,7 @@ class AppMain extends Component {
         .get('/items/', {
           params: {
             year: this.state.year,
+            round_no: this.state.round_no,
             institute_type: this.state.institute_type,
             quota: this.state.quota,
             search: this.state.search,
@@ -143,6 +161,9 @@ class AppMain extends Component {
                 } else {
                   msg = value
                 }
+                if (name === 'round_no') {
+                  msg = 'Round ' + value
+                }
                 toast({
                   type: 'success',
                   title: `Changed to ${msg}`,
@@ -174,6 +195,7 @@ class AppMain extends Component {
         .get('/items/', {
           params: {
             year: this.state.year,
+            round_no: this.state.round_no,
             institute_type: this.state.institute_type,
             quota: this.state.quota,
             page: this.state.currPage,
@@ -212,6 +234,7 @@ class AppMain extends Component {
             .get('/items/', {
               params: {
                 year: this.state.year,
+                round_no: this.state.round_no,
                 institute_type: this.state.institute_type,
                 quota: this.state.quota,
                 page: this.state.currPage,
@@ -250,6 +273,7 @@ class AppMain extends Component {
           .get('/items/', {
             params: {
               year: this.state.year,
+              round_no: this.state.round_no,
               institute_type: this.state.institute_type,
               quota: this.state.quota,
               page: this.state.currPage,
@@ -298,6 +322,7 @@ class AppMain extends Component {
           .get('/items/', {
             params: {
               year: this.state.year,
+              round: this.state.round_no,
               institute_type: this.state.institute_type,
               quota: this.state.quota,
               search: this.state.search,
@@ -329,6 +354,7 @@ class AppMain extends Component {
         .get('/items/', {
           params: {
             year: this.state.year,
+            round_no: this.state.round_no,
             institute_type: this.state.institute_type
           }
         })
@@ -345,6 +371,7 @@ class AppMain extends Component {
     const {
       data,
       year,
+      round_no,
       institute_type,
       quota,
       currPage,
@@ -367,21 +394,49 @@ class AppMain extends Component {
         <Segment>
           <div className='primary-filters-margin'>
             <div className='year-type'>
-              <div className='year-type-margin'>
-                <Button
-                  content='Year'
-                  color='facebook'
-                  className='year-button'
-                />
-                <Dropdown
-                  name='year'
-                  value={year}
-                  placeholder='All'
-                  selection
-                  compact
-                  options={yearDropDownOptions}
-                  onChange={this.handleChange}
-                />
+              <div
+                className={
+                  isBrowser ? 'year-round-browser' : 'year-round-mobile'
+                }
+              >
+                <div>
+                  <Button
+                    content='Year'
+                    color='facebook'
+                    className='year-button'
+                  />
+                  <Dropdown
+                    name='year'
+                    value={year}
+                    placeholder='All'
+                    selection
+                    compact
+                    options={yearDropDownOptions}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                {year === '2020' && (
+                  <div>
+                    <Button
+                      className={
+                        isBrowser
+                          ? 'round-button-browser'
+                          : 'round-button-mobile'
+                      }
+                      content='Round'
+                      color='facebook'
+                    />
+                    <Dropdown
+                      name='round_no'
+                      value={round_no}
+                      placeholder='Round no'
+                      selection
+                      compact
+                      options={roundDropDownOptions}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                )}
               </div>
               <div className='year-type-margin'>
                 <Form>
@@ -660,6 +715,9 @@ class AppMain extends Component {
               <Table.Row>
                 <Table.HeaderCell textAlign='center'>Sr.</Table.HeaderCell>
                 <Table.HeaderCell textAlign='center'>Year</Table.HeaderCell>
+                {year === '2020' && (
+                  <Table.HeaderCell textAlign='center'>Round</Table.HeaderCell>
+                )}
                 <Table.HeaderCell
                   sorted={
                     clickedColumn === 'institute_short' ? direction : null
@@ -734,6 +792,11 @@ class AppMain extends Component {
                   <Table.Cell collapsing textAlign='center'>
                     {element.year}
                   </Table.Cell>
+                  {year === '2020' && (
+                    <Table.Cell collapsing textAlign='center'>
+                      {element.round_no}
+                    </Table.Cell>
+                  )}
                   <Table.Cell textAlign='center'>
                     {element.institute_short}
                   </Table.Cell>
@@ -741,15 +804,19 @@ class AppMain extends Component {
                     {element.program_name}
                   </Table.Cell>
                   {institute_type === 'NIT' && (
-                    <Table.Cell textAlign='center'>{element.quota}</Table.Cell>
+                    <Table.Cell collapsing textAlign='center'>
+                      {element.quota}
+                    </Table.Cell>
                   )}
-                  <Table.Cell textAlign='center'>
+                  <Table.Cell collapsing textAlign='center'>
                     {element.program_duration}
                   </Table.Cell>
                   <Table.Cell textAlign='center'>
                     {element.degree_short}
                   </Table.Cell>
-                  <Table.Cell textAlign='center'>{element.category}</Table.Cell>
+                  <Table.Cell collapsing textAlign='center'>
+                    {element.category}
+                  </Table.Cell>
                   <Table.Cell textAlign='center'>{element.pool}</Table.Cell>
                   <Table.Cell textAlign='center'>
                     {element.is_preparatory

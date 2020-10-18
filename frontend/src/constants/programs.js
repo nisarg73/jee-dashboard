@@ -141,6 +141,7 @@ export const nitPrograms = [
   'Industrial Design',
   'Life Science',
   'Material Science',
+  'Mathematics & Computing',
   'Civil Engineering and M.Tech in Transportation Engineering',
   'Civil Engineering and M.Tech in Water Resources',
   'Computer Science and Engineering and M.Tech Computer Science',
