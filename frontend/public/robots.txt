@@ -1,3 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
+
+# Sitemap files
+Sitemap: https://cutoffs.iitr.ac.in/sitemap.xml
