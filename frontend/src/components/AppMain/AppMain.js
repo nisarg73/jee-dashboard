@@ -42,7 +42,7 @@ import instructions from '../../constants/instructions'
 const initialState = {
   data: [],
   year: '2020',
-  round_no: '1',
+  round_no: '',
   institute_type: 'IIT',
   quota: '',
   count: 0,
@@ -107,7 +107,7 @@ class AppMain extends Component {
     // Temporary hack.
     // Create a generic handle change to avoid code repetition in future
     if (name === 'year') {
-      if (value === '2020') {
+      if (value === '2021') {
         this.setState({ round_no: '1' })
       } else {
         this.setState({ round_no: '' })
@@ -415,7 +415,7 @@ class AppMain extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                {year === '2020' && (
+                {year === '2021' && (
                   <div>
                     <Button
                       className={
@@ -517,7 +517,7 @@ class AppMain extends Component {
           </div>
 
           <div className='year-note'>
-            *Opening Closing ranks of this year, 2020, will be updated here
+            *Opening Closing ranks of this year, 2021, will be updated here
             after each round, once they are released by JoSSA :)
           </div>
         </Segment>
@@ -715,7 +715,7 @@ class AppMain extends Component {
               <Table.Row>
                 <Table.HeaderCell textAlign='center'>Sr.</Table.HeaderCell>
                 <Table.HeaderCell textAlign='center'>Year</Table.HeaderCell>
-                {year === '2020' && (
+                {year === '2021' && (
                   <Table.HeaderCell textAlign='center'>Round</Table.HeaderCell>
                 )}
                 <Table.HeaderCell
@@ -792,7 +792,7 @@ class AppMain extends Component {
                   <Table.Cell collapsing textAlign='center'>
                     {element.year}
                   </Table.Cell>
-                  {year === '2020' && (
+                  {year === '2021' && (
                     <Table.Cell collapsing textAlign='center'>
                       {element.round_no}
                     </Table.Cell>
