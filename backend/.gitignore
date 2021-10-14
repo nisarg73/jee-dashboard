@@ -3,3 +3,6 @@ __pycache__/
 
 # config variables
 configuration/base.yml
+
+# csv files
+*.csv
