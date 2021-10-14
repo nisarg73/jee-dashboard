@@ -1,4 +1,5 @@
 export default [
+  'For all previous years, only the final round Opening/Closing ranks are shown here.',
   'Every filter is applied as soon as you select its value and results can be seen upon scrolling to below table.',
   'Column headers can be clicked to sort any particular column in ascending/descending order.',
   'Opening/Closing Rank that have ( - P ) with it denotes Preparatory Rank.',
