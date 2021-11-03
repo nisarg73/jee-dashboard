@@ -3,6 +3,7 @@ export const iitDegrees = [
   'B.Tech',
   'BSc',
   'B.Tech + M.Tech (IDD)',
+  'BS + MS (IDD)',
   'Int MSc.',
   'B.Arch',
   'Int M.Tech',

@@ -41,8 +41,8 @@ import instructions from '../../constants/instructions'
 
 const initialState = {
   data: [],
-  year: '2020',
-  round_no: '',
+  year: '2021',
+  round_no: '1',
   institute_type: 'IIT',
   quota: '',
   count: 0,
