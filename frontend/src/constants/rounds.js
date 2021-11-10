@@ -1,4 +1,4 @@
-export const rounds = ['1']
+export const rounds = ['2', '1']
 
 export const roundDropDownOptions = rounds.map(function (element) {
   return {
