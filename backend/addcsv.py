@@ -1,7 +1,7 @@
 from api.models import Item
 import csv
 
-file = open('API_Data_v10.csv')
+file = open('API_Data_v11.csv')
 
 temp = csv.reader(file)
 

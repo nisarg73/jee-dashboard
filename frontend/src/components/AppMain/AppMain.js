@@ -42,7 +42,7 @@ import instructions from '../../constants/instructions'
 const initialState = {
   data: [],
   year: '2021',
-  round_no: '2',
+  round_no: '3',
   institute_type: 'IIT',
   quota: '',
   count: 0,
@@ -108,7 +108,7 @@ class AppMain extends Component {
     // Create a generic handle change to avoid code repetition in future
     if (name === 'year') {
       if (value === '2021') {
-        this.setState({ round_no: '2' })
+        this.setState({ round_no: '3' })
       } else {
         this.setState({ round_no: '' })
       }
