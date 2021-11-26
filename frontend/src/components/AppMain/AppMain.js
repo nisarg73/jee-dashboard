@@ -42,7 +42,7 @@ import instructions from '../../constants/instructions'
 const initialState = {
   data: [],
   year: '2021',
-  round_no: '3',
+  round_no: '6',
   institute_type: 'IIT',
   quota: '',
   count: 0,
@@ -108,7 +108,7 @@ class AppMain extends Component {
     // Create a generic handle change to avoid code repetition in future
     if (name === 'year') {
       if (value === '2021') {
-        this.setState({ round_no: '3' })
+        this.setState({ round_no: '6' })
       } else {
         this.setState({ round_no: '' })
       }
@@ -517,8 +517,7 @@ class AppMain extends Component {
           </div>
 
           <div className='year-note'>
-            *Opening Closing ranks of this year, 2021, will be updated here
-            after each round, once they are released by JoSSA. Best of Luck! :))
+            To all the future JEE aspirants, Best of Luck! :))
           </div>
         </Segment>
         <Accordion fluid styled>
