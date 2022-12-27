@@ -104,7 +104,23 @@ export const iitPrograms = [
   'Polymer Science and Engineering',
   'Production and Industrial Engineering',
   'Quality Engineering Design and Manufacturing',
-  'Textile Technology'
+  'Energy Engineering',
+  'Engineering and Computational Mechanics',
+  'Textile Technology',
+  'Materials Engineering',
+  'Biomedical Engineering',
+  'Biotechnology and Bioinformatics',
+  'Computational Engineering',
+  'Electrical Engineering - IC Design and Technology',
+  'Chemistry with Specialization',
+  'Civil and Infrastructure Engineering',
+  'Physics with Specialization',
+  'Biosciences and Bioengineering',
+  'Chemical Sciences',
+  'Mineral and Metallurgical Engineering',
+  'Mechatronics Engineering',
+  'Chemical and Biochemical Engineering',
+  'Interdisciplinary Sciences'
 ]
 
 export const nitPrograms = [
@@ -161,7 +177,16 @@ export const nitPrograms = [
   'Electronics and Instrumentation Engineering and M.Tech VLSI Design and Embedded',
   'Mechanical Engineering and M.Tech Mechatronics and Automation',
   'Biotechnology and Biochemical Engineering',
-  'Mathematics and Computing'
+  'Computational and Data Science',
+  'Civil Engineering - Construction Technology and Management',
+  'Computer Science and Engineering - Cyber Security',
+  'Computer Science and Engineering - Data Science',
+  'Electrical Engineering - Power System Engineering',
+  'Electronics and Communication Engineering - Microelectronics and VLSI System Design',
+  'Mechanical Engineering - Manufacturing and Industrial Engineering',
+  'Material Science and Engineering',
+  'Engineering and Computational Mechanics',
+  'Mathematics and Computing Technology'
 ]
 
 export const iitProgramDropDownOptions = iitPrograms.map(function (element) {

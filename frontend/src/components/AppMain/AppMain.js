@@ -41,8 +41,8 @@ import instructions from '../../constants/instructions'
 
 const initialState = {
   data: [],
-  year: '2021',
-  round_no: '6',
+  year: '2022',
+  round_no: '',
   institute_type: 'IIT',
   quota: '',
   count: 0,
@@ -107,7 +107,7 @@ class AppMain extends Component {
     // Temporary hack.
     // Create a generic handle change to avoid code repetition in future
     if (name === 'year') {
-      if (value === '2021') {
+      if (value === '2023') {
         this.setState({ round_no: '6' })
       } else {
         this.setState({ round_no: '' })
@@ -415,7 +415,7 @@ class AppMain extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                {year === '2021' && (
+                {year === '2023' && (
                   <div>
                     <Button
                       className={
@@ -714,7 +714,7 @@ class AppMain extends Component {
               <Table.Row>
                 <Table.HeaderCell textAlign='center'>Sr.</Table.HeaderCell>
                 <Table.HeaderCell textAlign='center'>Year</Table.HeaderCell>
-                {year === '2021' && (
+                {year === '2023' && (
                   <Table.HeaderCell textAlign='center'>Round</Table.HeaderCell>
                 )}
                 <Table.HeaderCell
